@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>資格・学会の期限</title>
+<style>
+  :root { --bg: #f6f7f9; --card: #fff; --ink: #1f2328; --muted: #6b7280; --line: #e5e7eb; --accent: #0f6cbd; --warn: #b45309; --ok: #15803d; --danger: #b91c1c; --est: #7c3aed; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Hiragino Sans", "Yu Gothic UI", sans-serif; font-size: 15px; line-height: 1.5;
+         padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+  #app { max-width: 720px; margin: 0 auto; padding: 0 16px 48px; }
+  header { padding: 12px 0 4px; }
+  h1 { font-size: 18px; margin: 0 0 8px; }
+  h2 { font-size: 16px; margin: 20px 0 8px; }
+  h3 { font-size: 15px; margin: 16px 0 6px; }
+  nav { display: flex; gap: 6px; }
+  .tab { flex: 1; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-size: 14px; color: var(--ink); }
+  .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button { font: inherit; background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 10px 14px; }
+  button:disabled { opacity: .5; }
+  button.secondary { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+  button.danger { background: var(--danger); }
+  button.back { padding: 6px 10px; font-size: 14px; margin-top: 8px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin: 10px 0; }
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .card-title { font-weight: 600; font-size: 16px; }
+  .card-foot { display: flex; justify-content: space-between; margin-top: 6px; font-size: 14px; }
+  .bar { height: 8px; background: var(--line); border-radius: 4px; margin-top: 8px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--accent); }
+  .warn { color: var(--warn); } .ok { color: var(--ok); }
+  .muted { color: var(--muted); } .small { font-size: 13px; }
+  .clickable { cursor: pointer; }
+  .line { display: flex; justify-content: space-between; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 6px 0; }
+  .line-title { font-weight: 500; }
+  .line-sub { display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; margin-top: 2px; }
+  .line-days { white-space: nowrap; font-size: 14px; color: var(--muted); align-self: center; }
+  .line-days.soon { color: var(--warn); font-weight: 600; }
+  .estimated { color: var(--est); }
+  .estimated::after { content: ""; }
+  .tag { background: #eef2ff; color: #3730a3; border-radius: 6px; padding: 0 6px; font-size: 12px; }
+  .req { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 6px 0; }
+  .req-head { display: flex; align-items: center; gap: 8px; }
+  .req-text { flex: 1; }
+  .req-val { white-space: nowrap; color: var(--muted); font-size: 14px; }
+  .badge { font-size: 12px; border-radius: 6px; padding: 1px 6px; white-space: nowrap; background: #e5e7eb; color: #374151; }
+  .badge.s-済 { background: #dcfce7; color: var(--ok); } .badge.s-進行中 { background: #fef3c7; color: var(--warn); } .badge.s-不要 { background: #f3f4f6; color: var(--muted); }
+  details { margin: 6px 0; }
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary .req { margin: 0; border-left: 3px solid var(--accent); }
+  .children { margin-left: 12px; border-left: 2px solid var(--line); padding-left: 8px; }
+  .editor { background: #fbfcfe; border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; margin: 8px 0; }
+  .editor label { display: block; font-size: 13px; color: var(--muted); margin: 8px 0; }
+  .editor label.inline { display: flex; align-items: center; gap: 6px; color: var(--ink); font-size: 14px; }
+  .editor input[type=text], .editor input[type=number], .editor input[type=date], .editor input[type=time], .editor input[type=url], .editor select, .editor textarea {
+    display: block; width: 100%; font: inherit; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); margin-top: 2px; }
+  .editor .row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+  .editor .row input { flex: 1; }
+  .error { color: var(--danger); background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px; }
+  .busy { color: var(--muted); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
